@@ -1,21 +1,10 @@
 @extends('site.layouts.basic')
 
+@section('title', 'Contato')
+@php
+echo var_dump($_GET);
+@endphp
 @section('content')
-    <div class="topo">
-
-        <div class="logo">
-            <img src="img/logo.png">
-        </div>
-
-        <div class="menu">
-            <ul>
-                <li><a href="{{ route('site.index') }}">Principal</a></li>
-                <li><a href="{{ route('site.sobrenos') }}">Sobre Nós</a></li>
-                <li><a href="{{ route('site.contato') }}">Contato</a></li>
-            </ul>
-        </div>
-    </div>
-
     <div class="conteudo-pagina">
         <div class="titulo-pagina">
             <h1>Entre em contato conosco</h1>
@@ -23,44 +12,45 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                <form>
-                    <input type="text" placeholder="Nome" class="borda-preta">
+                <form id='formContato'>
+                    <input name="nome" type="text" placeholder="Nome" class="borda-preta">
                     <br>
-                    <input type="text" placeholder="Telefone" class="borda-preta">
+                    <input name="telefone" type="text" placeholder="Telefone" class="borda-preta">
                     <br>
-                    <input type="text" placeholder="E-mail" class="borda-preta">
+                    <input name="email" type="email" placeholder="E-mail" class="borda-preta">
                     <br>
-                    <select class="borda-preta">
+                    <select name="motivo" class="borda-preta">
                         <option value="">Qual o motivo do contato?</option>
-                        <option value="">Dúvida</option>
-                        <option value="">Elogio</option>
-                        <option value="">Reclamação</option>
+                        <option value="1">Dúvida</option>
+                        <option value="2">Elogio</option>
+                        <option value="3">Reclamação</option>
                     </select>
                     <br>
-                    <textarea class="borda-preta">Preencha aqui a sua mensagem</textarea>
+                    <textarea name="mensagem" class="borda-preta" placeholder="Preencha aqui a sua mensagem"></textarea>
                     <br>
                     <button type="submit" class="borda-preta">ENVIAR</button>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        $('#formContato').submit(function(e) {
+            e.preventDefault();
 
-    <div class="rodape">
-        <div class="redes-sociais">
-            <h2>Redes sociais</h2>
-            <img src="{{ asset('img/facebook.png') }}">
-            <img src="{{ asset('img/linkedin.png') }}">
-            <img src="{{ asset('img/youtube.png') }}">
-        </div>
-        <div class="area-contato">
-            <h2>Contato</h2>
-            <span>(11) 3333-4444</span>
-            <br>
-            <span>supergestao@dominio.com.br</span>
-        </div>
-        <div class="localizacao">
-            <h2>Localização</h2>
-            <img src="{{ asset('img/mapa.png') }}">
-        </div>
-    </div>
+            var form = $(this);
+            var destino = "{!! URL::to('/contato') !!}"
+
+            $.ajax({
+                type: "GET",
+                url: destino,
+                data: form.serialize(),
+            }).done(function(data, textStatus, jqXHR) {
+                alert(data);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("jqXHR:" + jqXHR);
+                console.log("TestStatus: " + textStatus);
+                console.log("ErrorThrown: " + errorThrown);
+            });
+        })
+    </script>
 @endsection
