@@ -38,14 +38,14 @@ return [
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix' => '',
+            'database' => env('DB_DATABASE', database_path('database.sqlite')), //Se a variavel DB_DATABASE nao tiver definida, o sistema vai 
+            'prefix' => '',                                                     //procurar por um arquivo chamado database.sqlite dentro da pasta database
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
+            //'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),

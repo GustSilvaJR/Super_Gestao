@@ -1,8 +1,7 @@
 @extends('site.layouts.basic')
-
 @section('title', 'Contato')
 @php
-echo var_dump($_GET);
+    var_dump($_POST); 
 @endphp
 @section('content')
     <div class="conteudo-pagina">
@@ -12,27 +11,25 @@ echo var_dump($_GET);
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                <form id='formContato'>
-                    <input name="nome" type="text" placeholder="Nome" class="borda-preta">
-                    <br>
-                    <input name="telefone" type="text" placeholder="Telefone" class="borda-preta">
-                    <br>
-                    <input name="email" type="email" placeholder="E-mail" class="borda-preta">
-                    <br>
-                    <select name="motivo" class="borda-preta">
-                        <option value="">Qual o motivo do contato?</option>
-                        <option value="1">Dúvida</option>
-                        <option value="2">Elogio</option>
-                        <option value="3">Reclamação</option>
-                    </select>
-                    <br>
-                    <textarea name="mensagem" class="borda-preta" placeholder="Preencha aqui a sua mensagem"></textarea>
-                    <br>
-                    <button type="submit" class="borda-preta">ENVIAR</button>
-                </form>
+                @component('site.layouts._components.form_contato')
+                    Sou o valor da variavel $slot dentro da view contato, só posso ser passada como string
+                @endcomponent
             </div>
         </div>
     </div>
+    
+@endsection
+
+
+
+
+
+
+
+
+
+{{--  ---------COMO REALIZAR UMA REQUISICAO AJAX UTILIZANDO O LARAVEL(COMO ACESSAR O DESTINO)--------
+    
     <script>
         $('#formContato').submit(function(e) {
             e.preventDefault();
@@ -52,5 +49,4 @@ echo var_dump($_GET);
                 console.log("ErrorThrown: " + errorThrown);
             });
         })
-    </script>
-@endsection
+    </script> --}}

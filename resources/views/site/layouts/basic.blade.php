@@ -10,7 +10,7 @@
 
 <body>
     @include('site.layouts.menu'); <!--Incluindo bloco de código na integra aqui-->
-    @yield('content');
+    @yield('content'); {{--Defino onde minha sessão deverá estar, passando o comando yield e o nome da section. Cada section é criada dentro das views--}}
     @include('site.layouts.rodape');
 </body>
 </html>
