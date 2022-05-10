@@ -18,7 +18,7 @@ class UpdateFornecedoresNovasTabelas3 extends Migration
             $table->string('email',100);
         });
 
-        Schema::create('teste', function (Blueprint $table){
+        Schema::create('teste2', function (Blueprint $table){
             $table->string('teste',10);
         });
     }
@@ -30,6 +30,10 @@ class UpdateFornecedoresNovasTabelas3 extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('teste');
+        Schema::table('fornecedores', function(Blueprint $table){
+            $table->dropColumn('uf');
+            $table->dropColumn('email');
+        });
     }
 }
