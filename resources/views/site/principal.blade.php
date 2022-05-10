@@ -29,7 +29,7 @@
                 <h1>Contato</h1>
                 <p>Caso tenha qualquer dúvida por favor entre em contato com nossa equipe pelo formulário abaixo.
                 @php
-                    $msg=["msg"=>"Sou uma mensagem para a view principal"];
+                    $msg=["msg"=>"Sou uma mensagem para a view principal!!!!"];
                 @endphp
                 @component('site.layouts._components.form_contato', $msg)
                 @endcomponent
